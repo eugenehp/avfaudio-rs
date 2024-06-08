@@ -1,0 +1,15 @@
+[package]
+name = "avfaudio"
+version = "0.0.1"
+edition = "2021"
+authors = ["Eugene Hauptmann"]
+homepage = "https://github.com/eugenehp/avfaudio-rs"
+repository = "https://github.com/eugenehp/avfaudio-rs"
+license = "MIT"
+categories = ["apple", "audio", "AVAudioSession", "AVFAudio", "ios", "visionos", "macos"]
+
+[[example]]
+name = "session"
+
+[dependencies]
+avfaudio2-sys = "0.2.4"
