@@ -16,6 +16,7 @@ name = "avfaudio"
 version = "0.0.1"
 dependencies = [
  "avfaudio2-sys",
+ "block",
 ]
 
 [[package]]
