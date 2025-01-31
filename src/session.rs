@@ -85,7 +85,7 @@ impl AVAudioSession {
         }
     }
 
-    #[doc = "activate audio session"]
+    #[doc = "Activate audio session"]
     pub fn activate(&self) {
         if let Some(session) = self.session {
             #[allow(unused)]
