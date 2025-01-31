@@ -2,7 +2,8 @@ use avfaudio2_sys::{
     AVAudioSession as AVAudioSessionSys, AVAudioSessionCategory, AVAudioSessionCategoryAmbient,
     AVAudioSessionCategoryAudioProcessing, AVAudioSessionCategoryMultiRoute,
     AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback,
-    AVAudioSessionCategoryRecord, AVAudioSessionCategorySoloAmbient, IAVAudioSession, NSError,
+    AVAudioSessionCategoryRecord, AVAudioSessionCategorySoloAmbient, AVAudioSession_Activation,
+    IAVAudioSession, NSError,
 };
 
 #[doc = "Audio session category identifiers."]
@@ -81,6 +82,26 @@ impl AVAudioSession {
             let mut error: *mut NSError = ::std::ptr::null_mut();
 
             unsafe { session.setCategory_error_(category.0, error) };
+        }
+    }
+
+    #[doc = "activate audio session"]
+    pub fn activate(&self) {
+        if let Some(session) = self.session {
+            #[allow(unused)]
+            let mut error: *mut NSError = ::std::ptr::null_mut();
+
+            unsafe { session.setActive_error_(true, error) };
+        }
+    }
+
+    #[doc = "Dectivate audio session"]
+    pub fn deactivate(&self) {
+        if let Some(session) = self.session {
+            #[allow(unused)]
+            let mut error: *mut NSError = ::std::ptr::null_mut();
+
+            unsafe { session.setActive_error_(false, error) };
         }
     }
 }
