@@ -7,7 +7,8 @@ homepage = "https://github.com/eugenehp/avfaudio-rs"
 repository = "https://github.com/eugenehp/avfaudio-rs"
 description = "Rust library to setup AVAudioSession from Apple's AVFAudio framework"
 license = "MIT"
-categories = ["AVAudioSession", "AVFAudio", "ios", "visionos", "macos"]
+keywords = ["AVAudioSession", "AVFAudio", "ios", "visionos", "macos"]
+category = "External FFI bindings"
 
 [[example]]
 name = "session"
