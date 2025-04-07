@@ -6,6 +6,8 @@ use avfaudio2_sys::{
     IAVAudioSession, NSError,
 };
 
+use objc::runtime::{NO, YES};
+
 #[doc = "Audio session category identifiers."]
 #[doc = "https://developer.apple.com/documentation/avfaudio/avaudiosessioncategory"]
 pub struct Category(AVAudioSessionCategory);
@@ -91,7 +93,7 @@ impl AVAudioSession {
             #[allow(unused)]
             let mut error: *mut NSError = ::std::ptr::null_mut();
 
-            unsafe { session.setActive_error_(true, error) };
+            unsafe { session.setActive_error_(YES, error) };
         }
     }
 
@@ -101,7 +103,7 @@ impl AVAudioSession {
             #[allow(unused)]
             let mut error: *mut NSError = ::std::ptr::null_mut();
 
-            unsafe { session.setActive_error_(false, error) };
+            unsafe { session.setActive_error_(NO, error) };
         }
     }
 }
