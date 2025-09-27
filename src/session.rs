@@ -56,6 +56,42 @@ impl Category {
     }
 }
 
+#[doc = "Constants that specify optional audio behaviors."]
+#[doc = "https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions"]
+pub struct CategoryOptions {}
+
+impl CategoryOptions {
+    #[doc = "An option that indicates whether audio from this session mixes with audio from active sessions in other audio apps."]
+    pub const MIX_WITH_OTHERS: u64 = 1;
+
+    #[doc = "An option that reduces the volume of other audio sessions while audio from this session plays."]
+    pub const DUCK_OTHERS: u64 = 2;
+
+    #[doc = "An option that determines whether Bluetooth hands-free devices appear as available input routes."]
+    pub const ALLOW_BLUETOOTH: u64 = 4;
+
+    #[doc = "An option that makes Bluetooth Hands-Free Profile (HFP) devices available for audio input."]
+    pub const ALLOW_BLUETOOTH_HFP: u64 = 4;
+
+    #[doc = "An option that determines whether audio from the session defaults to the built-in speaker instead of the receiver."]
+    pub const DEFAULT_TO_SPEAKER: u64 = 8;
+
+    #[doc = "An option that determines whether to pause spoken audio content from other sessions when your app plays its audio."]
+    pub const INTERRUPT_SPOKEN_AUDIO_AND_MIX_WITH_OTHERS: u64 = 17;
+
+    #[doc = "An option that determines whether you can stream audio from this session to Bluetooth devices that support the Advanced Audio Distribution Profile (A2DP)."]
+    pub const ALLOW_BLUETOOTH_A2DP: u64 = 32;
+
+    #[doc = "An option that determines whether you can stream audio from this session to AirPlay devices."]
+    pub const ALLOW_AIRPLAY: u64 = 64;
+
+    #[doc = "An option that indicates whether the system interrupts the audio session when it mutes the built-in microphone."]
+    pub const OVERRIDE_MUTED_MICROPHONE_INTERRUPTION: u64 = 128;
+
+    #[doc = "An option that indicates to enable high-quality audio for input and output routes."]
+    pub const BLUETOOTH_HIGH_QUALITY_RECORDING: u64 = 524288;
+}
+
 #[doc = "An object that communicates to the system how you intend to use audio in your app."]
 #[doc = "https://developer.apple.com/documentation/avfaudio/avaudiosession"]
 #[derive(Debug)]
@@ -77,13 +113,23 @@ impl AVAudioSession {
         }
     }
 
-    #[doc = "Sets the audio session’s category, mode, and options."]
+    #[doc = "Sets the audio session’s category."]
     pub fn set_category(&self, category: Category) {
         if let Some(session) = self.session {
             #[allow(unused)]
             let mut error: *mut NSError = ::std::ptr::null_mut();
 
             unsafe { session.setCategory_error_(category.0, error) };
+        }
+    }
+
+    #[doc = "Sets the audio session’s category and options."]
+    pub fn set_category_with_options(&self, category: Category, options: u64) {
+        if let Some(session) = self.session {
+            #[allow(unused)]
+            let mut error: *mut NSError = ::std::ptr::null_mut();
+
+            unsafe { session.setCategory_withOptions_error_(category.0, options, error) };
         }
     }
 
