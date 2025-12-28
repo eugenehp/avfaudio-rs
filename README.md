@@ -32,7 +32,7 @@ cargo run --example session
 
 ## Authors
 
-Copyright (c) 2024-2025 Eugene Hauptmann
+Copyright (c) 2024-2026 Eugene Hauptmann
 
 ## License
 
